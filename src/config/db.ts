@@ -7,6 +7,5 @@ export const connectDB = async () => {
   } catch (err) {
     const error = err as Error;
     console.error(`Error: ${error.message}`);
-    process.exit(1);
   }
 };
