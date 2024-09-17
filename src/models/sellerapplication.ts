@@ -1,5 +1,5 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
-import User from './userModel';
+
 interface ISellerApplication extends Document {
     userId: mongoose.Types.ObjectId;
     status: 'pending' | 'approved' | 'rejected';
@@ -9,7 +9,7 @@ interface ISellerApplication extends Document {
 
 const sellerApplicationSchema: Schema<ISellerApplication> = new Schema({
     userId: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },

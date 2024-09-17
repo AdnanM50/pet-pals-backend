@@ -1,9 +1,8 @@
 
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import User from './userModel';
 
 interface IPuppy extends Document {
-    sellerId: mongoose.Types.ObjectId;
+    sellerId: mongoose.Schema.Types.ObjectId;
     name: string;
     breed: string;
     gender: 'Male' | 'Female';
@@ -17,8 +16,8 @@ interface IPuppy extends Document {
 
 const puppySchema: Schema<IPuppy> = new Schema({
     sellerId: { 
-        type: mongoose.Types.ObjectId, 
-        ref: 'User', // Reference the user who is the seller
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
         required: true 
     },
     name: { type: String, required: true },

@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import User from './userModel';
+
 interface IService extends Document {
     sellerId: mongoose.Types.ObjectId;
     title: string;
@@ -17,7 +17,7 @@ interface IService extends Document {
 
 const serviceSchema: Schema<IService> = new Schema({
     sellerId: { 
-        type: mongoose.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
         required: true 
     },

@@ -9,7 +9,7 @@ interface IWithdrawRequest extends Document {
 }
 
 const withdrawRequestSchema: Schema<IWithdrawRequest> = new Schema({
-    sellerId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
+    sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     amount: { type: Number, required: true },
     preferredPaymentMethod: { type: String, required: true },
     accountDetails: { type: String, required: true },

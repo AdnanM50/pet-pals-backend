@@ -1,6 +1,4 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import Service from './servicemodel';
-import User from './userModel';
 
 interface IBooking extends Document {
     userId: mongoose.Types.ObjectId;
@@ -11,9 +9,9 @@ interface IBooking extends Document {
 }
 
 const bookingSchema: Schema<IBooking> = new Schema({
-    userId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
-    sellerId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
-    serviceId: { type: mongoose.Types.ObjectId, ref: 'Service', required: true },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    sellerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    serviceId: { type: Schema.Types.ObjectId, ref: 'Service', required: true },
     bookingDate: { type: Date, required: true },
     status: { 
         type: String, 

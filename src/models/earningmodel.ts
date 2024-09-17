@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import User from './userModel';
+
 interface IEarning extends Document {
     sellerId: mongoose.Types.ObjectId;
     totalEarnings: number;
@@ -11,8 +11,8 @@ interface IEarning extends Document {
     }[];
 }
 
-const earningsSchema: Schema<IEarning> = new Schema({
-    sellerId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
+const earningsSchema: Schema = new Schema({
+    sellerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     totalEarnings: { type: Number, default: 0 },
     totalWithdraw: { type: Number, default: 0 },
     availableBalance: { type: Number, default: 0 },

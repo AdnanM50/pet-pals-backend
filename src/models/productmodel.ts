@@ -1,5 +1,4 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import User from './userModel';
 
 interface IProduct extends Document {
     sellerId: mongoose.Types.ObjectId;
@@ -13,9 +12,9 @@ interface IProduct extends Document {
     images: string[];
 }
 
-const productSchema: Schema<IProduct> = new Schema({
+const productSchema: Schema = new Schema({
     sellerId: { 
-        type: mongoose.Types.ObjectId, 
+        type: Schema.Types.ObjectId, 
         ref: 'User', 
         required: true 
     },
