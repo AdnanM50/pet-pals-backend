@@ -6,13 +6,13 @@ interface IUser extends Document {
     name: string;
     lastLogin: Date;
     isVerified: boolean;
-    isSeller: boolean; 
+    isSeller: boolean;
     resetPasswordToken?: string;
     resetPasswordExpiresAt?: Date;
     verificationToken?: string;
     verificationExpiresAt?: Date;
     image?: string;
-    about?: string; 
+    about?: string;
 }
 
 const userSchema: Schema<IUser> = new Schema({
@@ -39,15 +39,16 @@ const userSchema: Schema<IUser> = new Schema({
     },
     isSeller: {
         type: Boolean,
-        default: false 
+        default: false
     },
     resetPasswordToken: String,
     resetPasswordExpiresAt: Date,
     verificationToken: String,
     verificationExpiresAt: Date,
     image: String,
-    about: String 
+    about: String
 }, { timestamps: true });
 
 const User: Model<IUser> = mongoose.model<IUser>('User', userSchema);
 export default User;
+export type { IUser };
