@@ -6,7 +6,7 @@ interface IUser extends Document {
     name: string;
     lastLogin: Date;
     isVerified: boolean;
-    isSeller: boolean;
+    role: 'admin' | 'seller' | 'user';
     resetPasswordToken?: string;
     resetPasswordExpiresAt?: Date;
     verificationToken?: string;
@@ -37,9 +37,10 @@ const userSchema: Schema<IUser> = new Schema({
         type: Boolean,
         default: false
     },
-    isSeller: {
-        type: Boolean,
-        default: false
+    role: {
+        type: String,
+        enum: ['admin', 'seller', 'user'],
+        default: 'user'
     },
     resetPasswordToken: String,
     resetPasswordExpiresAt: Date,

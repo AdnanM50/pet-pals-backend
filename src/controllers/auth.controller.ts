@@ -126,6 +126,7 @@ export const login = async (req: Request, res: Response) => {
             user: {
                 email: user.email,
                 name: user.name,
+                role: user.role,
             }
         });
     } catch (error) {
@@ -153,7 +154,7 @@ export const profileDetails = async (req: Request, res: Response) => {
                 name: user.name,
                 image: user.image,
                 about: user.about,
-                isSeller: user.isSeller,
+                role: user.role,
                 lastLogin: user.lastLogin,
                 isVerified: user.isVerified
             }
