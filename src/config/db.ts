@@ -9,3 +9,10 @@ export const connectDB = async () => {
     console.error(`Error: ${error.message}`);
   }
 };
+
+
+// PORT=8080
+// DATABASE_URL=mongodb+srv://mdadnanhossain88:AsBTvoZ2IrAKrvSk@cluster0.bxc6yor.mongodb.net/petshopBackend?retryWrites=true&w=majority&appName=Cluster0/Bookshop
+// NODE_ENV=development
+// CORS_ORIGIN=*
+// JWT_SECRET=mysecretkey
