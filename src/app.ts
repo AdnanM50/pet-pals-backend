@@ -1,23 +1,59 @@
-import express, { Application } from 'express';
-import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
-import userRoutes from './routes/auth.route';
-import adminRoutes from './routes/adminUser.route';
-import categoryRoutes from './routes/productcategoryRoutes';
-import productRoutes from './routes/productRoutes';
+import dotenv from 'dotenv'
+dotenv.config({ path: process.env.NODE_ENV === 'production' ? './.env.production' : './.env' })
 
-dotenv.config();
+import compression from 'compression'
+import helmet from 'helmet'
+import cors from 'cors'
 
-const app: Application = express();
-app.use(cookieParser());
-app.use(express.json());
+import { Server } from "http";
 
-// Serve static files from the uploads directory
-app.use('/uploads', express.static('uploads'));
+import express from 'express';
+import mongoose from 'mongoose';
+// import apiRoutes from './routes/api'
+// import { decodeToken } from "./middlewares/auth.middleware";
 
-app.use('/api/auth', userRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/products', productRoutes);
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+    throw new Error('DATABASE_URL is not defined');
+}
 
-export default app;
+mongoose.connect(databaseUrl).then(() => {
+    console.log('MongoDB Connected Successfully.')
+}).catch((err) => {
+    console.log('Database connection failed.')
+})
+
+
+const PORT = process.env.PORT || 8000;
+const app = express();
+
+const server = new Server(app);
+
+
+app.use(compression())
+app.use(helmet())
+app.use(express.json())
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); //* will allow from all cross domain
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    )
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+    next()
+});
+app.use(cors())
+// app.use(decodeToken)
+// app.use('/api', apiRoutes)
+app.get('*', (req, res) => {
+    res.send('Welcome to GymStick!');
+})
+
+server.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
+})
