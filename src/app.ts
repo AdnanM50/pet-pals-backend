@@ -51,7 +51,7 @@ app.use(cors())
 // app.use(decodeToken)
 // app.use('/api', apiRoutes)
 app.get('*', (req, res) => {
-    res.send('Welcome to GymStick!');
+    res.send('Welcome to Pet-pals backend!');
 })
 
 server.listen(PORT, () => {
