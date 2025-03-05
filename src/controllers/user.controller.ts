@@ -270,6 +270,20 @@ export const userLogin = async (req: any, res: any) => {
     }
 }
 
+export const userLogout = async (req: any, res: any) => {
+    try {
+        return res.clearCookie('token').status(200).send({
+            error: false,
+            msg: 'Logout successfully'
+        })
+    } catch (error) {
+        return res.status(500).send({
+            error: true,
+            msg: 'Internal server error'
+        })
+    }
+}
+
 export const getUserProfile = async (req: any, res: any) => {
     try {
         let user = res.locals?.user;

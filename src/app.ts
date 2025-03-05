@@ -8,7 +8,7 @@ import { Server } from "http";
 import express from 'express';
 import mongoose from 'mongoose';
 import apiRoutes from './routes/api'
-import { decodeToken } from './middlewares/auth.middleware'
+// import { decodeToken } from './middlewares/auth.middleware'
 
 
 const databaseUrl = process.env.DATABASE_URL;
@@ -58,7 +58,7 @@ app.use(function (req, res, next) {
     next()
 });
 app.use(cors())
-app.use(decodeToken)
+// app.use(decodeToken)
 app.use('/api', apiRoutes)
 app.get('*', (req, res) => {
     res.send('Welcome to Pet-pals backend!');
