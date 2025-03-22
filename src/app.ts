@@ -49,7 +49,7 @@ app.use(
     })
 );
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); //* will allow from all cross domain
+    res.header("Access-Control-Allow-Origin", "*"); 
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
